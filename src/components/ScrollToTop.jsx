@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaAngleDoubleUp } from "react-icons/fa";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,7 +32,9 @@ export default function ScrollToTop() {
     <>
       {isVisible && (
         <div onClick={scrollToTop} className="scroll_up">
-          <span className="ti-angle-double-up"></span>
+          <span>
+            <FaAngleDoubleUp />
+          </span>
         </div>
       )}
     </>

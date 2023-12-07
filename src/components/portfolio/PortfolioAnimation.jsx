@@ -1,11 +1,12 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Gallery, Item } from "react-photoswipe-gallery";
+import item from "../../assets/images/portfolio/1.jpg";
 
 const tabList = ["All", "Frontend", "Full Stack"];
 const AllPortfolioContent = [
   {
-    img: "img/portfolio/1.jpg",
+    img: `${item}`,
     title: "Motion Graphy",
     subTitle: "Android App",
     alterText: "Motion Graphy",
@@ -13,7 +14,7 @@ const AllPortfolioContent = [
       "https://play.google.com/store/apps/details?id=com.alightcreative.motion&hl=en&gl=US",
   },
   {
-    img: "img/portfolio/3.jpg",
+    img: `${item}`,
     title: "E-Learning App",
     subTitle: "Nuna ios App",
     alterText: "Elearning App",
@@ -21,7 +22,7 @@ const AllPortfolioContent = [
       "https://dribbble.com/shots/16529350-Nairo-Personal-Portfolio-React-Template",
   },
   {
-    img: "img/portfolio/2.jpg",
+    img: `${item}`,
     title: "Visual Design",
     subTitle: "Themeforest Marke",
     alterText: "Business Mockup",
@@ -29,7 +30,7 @@ const AllPortfolioContent = [
       "https://dribbble.com/shots/16529407-Deski-Saas-Software-React-Template",
   },
   {
-    img: "img/portfolio/4.jpg",
+    img: `${item}`,
     title: "Business Card",
     subTitle: "Graphicriver Market",
     alterText: "E-Cosmetics",
@@ -37,7 +38,7 @@ const AllPortfolioContent = [
       "https://dribbble.com/shots/16545341-Imroz-Vue-JS-Creative-Agency-Portfolio-Template",
   },
   {
-    img: "img/portfolio/7.jpg",
+    img: `${item}`,
     title: "Code Editing",
     subTitle: "Codecanyon Market",
     alterText: "Bottle Illustration",
@@ -45,7 +46,7 @@ const AllPortfolioContent = [
       "https://dribbble.com/shots/16529158-Waxon-Personal-Portfolio-VueJS-Template-RTL",
   },
   {
-    img: "img/portfolio/6.jpg",
+    img: `${item}`,
     title: "Web Application",
     subTitle: "Behance Shot",
     alterText: "Web Application",
@@ -55,7 +56,7 @@ const AllPortfolioContent = [
 ];
 const BrandingPortfolioContent = [
   {
-    img: "img/portfolio/1.jpg",
+    img: `${item}`,
     title: "Web Application",
     subTitle: "Behance Shot",
     alterText: "Web Application",
@@ -64,7 +65,7 @@ const BrandingPortfolioContent = [
   },
 
   {
-    img: "img/portfolio/7.jpg",
+    img: `${item}`,
     title: "Code Editing",
     subTitle: "Codecanyon Market",
     alterText: "Bottle Illustration",
@@ -72,7 +73,7 @@ const BrandingPortfolioContent = [
       "https://dribbble.com/shots/16529158-Waxon-Personal-Portfolio-VueJS-Template-RTL",
   },
   {
-    img: "img/portfolio/3.jpg",
+    img: `${item}`,
     title: "Visual Design",
     subTitle: "Themeforest Marke",
     alterText: "Business Mockup",
@@ -83,7 +84,7 @@ const BrandingPortfolioContent = [
 
 const PhotographyPortfolioContent = [
   {
-    img: "img/portfolio/4.jpg",
+    img: `${item}`,
     title: "Code Editing",
     subTitle: "Codecanyon Market",
     alterText: "Bottle Illustration",
@@ -91,7 +92,7 @@ const PhotographyPortfolioContent = [
       "https://dribbble.com/shots/16529158-Waxon-Personal-Portfolio-VueJS-Template-RTL",
   },
   {
-    img: "img/portfolio/6.jpg",
+    img: `${item}`,
     title: "Web Application",
     subTitle: "Behance Shot",
     alterText: "Web Application",

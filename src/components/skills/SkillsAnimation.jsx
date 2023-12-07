@@ -108,14 +108,14 @@ const Skills = () => {
             {/* End skill-lt */}
 
             <div className="skill-lt">
-              <h6>WordPress</h6>
+              <h6>Postman</h6>
 
               <div className="skill-bar">
                 <div
                   className="skill-bar-in theme-bg"
-                  style={{ width: 70 + "%" }}
+                  style={{ width: 80 + "%" }}
                 >
-                  <span>70%</span>
+                  <span>80%</span>
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@ const Skills = () => {
             {/* End skill-lt */}
 
             <div className="skill-lt">
-              <h6>CSS3</h6>
+              <h6>Git and Github</h6>
 
               <div className="skill-bar">
                 <div

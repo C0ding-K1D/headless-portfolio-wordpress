@@ -1,5 +1,6 @@
 import React from "react";
 import Social from "../Social";
+import bg from "../../assets/images/banner/my-bg.jpg";
 
 const Slider = () => {
   return (
@@ -9,9 +10,8 @@ const Slider = () => {
         id="home"
         className="home-banner overlay overlay-65"
         style={{
-          backgroundImage: `url(${
-            process.env.PUBLIC_URL + "img/banner/my-bg.jpg"
-          })`,
+          backgroundImage: `url(${bg}
+          )`,
         }}
       >
         <div className="top-style rotate-both-side dark-shape">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Scrollspy from "react-scrollspy";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo/myLogo4.svg";
 
 const Header = () => {
   const [click, setClick] = useState(false);
@@ -26,11 +27,7 @@ const Header = () => {
           <div className=" header-transparent">
             {/* Brand */}
             <NavLink to="/">
-              <img
-                className="navbar-brand"
-                src="img/logo/myLogo4.svg"
-                alt="brand logo"
-              />
+              <img className="navbar-brand" src={logo} alt="brand logo" />
             </NavLink>
             {/* / */}
             {/* Mobile Toggle */}
@@ -55,7 +52,7 @@ const Header = () => {
               }
             >
               <Link to="/" className="sidebar-logo">
-                <img src="img/logo/myLogo4.svg" alt="brand" />
+                <img src={logo} alt="brand" />
               </Link>
               <Scrollspy
                 className="anchor_nav navbar-nav ml-auto"

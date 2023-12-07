@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { PostsContext } from "../../context/posts.context";
 import Modal from "react-modal";
-import Contact from "../../components/contact/Contact";
-import axios from "axios";
+import Contact from "../../components/contact/ContactAnimation";
+import cancel from "../../assets/images/cancel.svg";
+// import axios from "axios";
 
 Modal.setAppElement("#root");
 
@@ -9,7 +11,8 @@ const Blog = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
-  // const [data, setData] = useState([]);
+
+  const { posts, media, loadingMedia, loadingPosts } = useContext(PostsContext);
 
   function toggleModalOne() {
     setIsOpen(!isOpen);
@@ -20,22 +23,6 @@ const Blog = () => {
   function toggleModalThree() {
     setIsOpen3(!isOpen3);
   }
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://3.147.54.162:8000/v1/allarticles"
-  //       );
-  //       setData(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //       setData([]); // Set an empty array in case of an error
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, []);
 
   return (
     <>
@@ -48,20 +35,29 @@ const Blog = () => {
           <div className="blog-post" onClick={toggleModalOne}>
             <div className="blog-img">
               <div className="data">
-                <span>14</span>
-                <small>Jan</small>
+                <span>28</span>
+                <small>Sep</small>
               </div>
-
-              <img src="img/blog/blog-1.jpg" alt="blog post"></img>
+              {loadingMedia ? (
+                <p>Loading...</p>
+              ) : (
+                <img src={media[5].source_url} alt="blog post"></img>
+              )}
             </div>
             {/* End blog-img */}
 
             <div className="blog-info">
-              <h6>I saw few die of hunger of eating, a hundred thousand.</h6>
-              <p>
-                Integer vitae mi libero. Aliquam consequat dolor libero, nec
-                varius elit tempusporttitor.
-              </p>
+              {loadingPosts ? (
+                <p>Loading...</p>
+              ) : (
+                <h6>{posts[2].title.rendered}</h6>
+              )}
+              {loadingPosts ? (
+                <p>Loading...</p>
+              ) : (
+                <p>{posts[2].excerpt.rendered.replace(/^<p>|<\/p>$/g, "")}</p>
+              )}
+
               <div className="btn-bar">Read More</div>
             </div>
             {/* End blog-info */}
@@ -79,20 +75,29 @@ const Blog = () => {
           <div className="blog-post" onClick={toggleModalTwo}>
             <div className="blog-img">
               <div className="data">
-                <span>07</span>
-                <small>Aug</small>
+                <span>27</span>
+                <small>Sep</small>
               </div>
 
-              <img src="img/blog/blog-2.jpg" alt="blog post"></img>
+              {loadingMedia ? (
+                <p>Loading...</p>
+              ) : (
+                <img src={media[4].source_url} alt="blog post"></img>
+              )}
             </div>
             {/* End blog-img */}
 
             <div className="blog-info">
-              <h6>New Freehand Templates, built for the whole team.</h6>
-              <p>
-                Consectetur dorem ipsum dolor sit amet, adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+              {loadingPosts ? (
+                <p>Loading...</p>
+              ) : (
+                <h6>{posts[1].title.rendered}</h6>
+              )}
+              {loadingPosts ? (
+                <p>Loading...</p>
+              ) : (
+                <p>{posts[1].excerpt.rendered.replace(/^<p>|<\/p>$/g, "")}</p>
+              )}
               <div className="btn-bar">Read More</div>{" "}
             </div>
             {/* End blog-info */}
@@ -110,20 +115,29 @@ const Blog = () => {
           <div className="blog-post" onClick={toggleModalThree}>
             <div className="blog-img">
               <div className="data">
-                <span>22</span>
-                <small>Apr</small>
+                <span>26</span>
+                <small>Sep</small>
               </div>
 
-              <img src="img/blog/blog-3.jpg" alt="blog post"></img>
+              {loadingMedia ? (
+                <p>Loading...</p>
+              ) : (
+                <img src={media[3].source_url} alt="blog post"></img>
+              )}
             </div>
             {/* End blog-img */}
 
             <div className="blog-info">
-              <h6>To the lover of wilderness, Alaska is one of the most.</h6>
-              <p>
-                Estibulum eu ante sed dui porta porttitor. Nullam a placerat
-                velit. Suspendisse non ligula felis
-              </p>
+              {loadingPosts ? (
+                <p>Loading...</p>
+              ) : (
+                <h6>{posts[0].title.rendered}</h6>
+              )}
+              {loadingPosts ? (
+                <p>Loading...</p>
+              ) : (
+                <p>{posts[0].excerpt.rendered.replace(/^<p>|<\/p>$/g, "")}</p>
+              )}
               <div className="btn-bar">Read More</div>
             </div>
             {/* End blog-info */}
@@ -145,7 +159,7 @@ const Blog = () => {
       >
         <div>
           <button className="close-modal" onClick={toggleModalOne}>
-            <img src="/img/cancel.svg" alt="close icon" />
+            <img src={cancel} alt="close icon" />
           </button>
           {/* End close icon */}
 
@@ -153,71 +167,42 @@ const Blog = () => {
             <div className="scrollable">
               <div className="blog-grid">
                 <div className="blog-img">
-                  <img src="img/blog/blog-1.jpg" alt="blog post"></img>
+                  {loadingMedia ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <img src={media[5].source_url} alt="blog post"></img>
+                  )}
                 </div>
                 {/* End blog-img */}
                 <article className="article">
                   <div className="article-title">
-                    <h2>
-                      They Now Bade Farewell To The Kind But Unseen People
-                    </h2>
+                    {loadingPosts ? (
+                      <p>Loading...</p>
+                    ) : (
+                      <h2>{posts[2].title.rendered}</h2>
+                    )}
                     <div className="media">
                       <div className="avatar">
                         <img src="img/testimonial/team-1.jpg" alt="thumbnail" />
                       </div>
                       <div className="media-body">
-                        <label>BY ALEX</label>
-                        <span>26 FEB 2020</span>
+                        <label>BY MATTHEW</label>
+                        <span>28 SEP 2023</span>
                       </div>
                     </div>
                   </div>
                   {/* End .article-title */}
 
                   <div className="article-content">
-                    <p>
-                      Aenean eleifend ante maecenas pulvinar montes lorem et
-                      pede dis dolor pretium donec dictum. Vici consequat justo
-                      enim. Venenatis eget adipiscing luctus lorem. Adipiscing
-                      veni amet luctus enim sem libero tellus viverra venenatis
-                      aliquam. Commodo natoque quam pulvinar elit.
-                    </p>
-                    <p>
-                      Eget aenean tellus venenatis. Donec odio tempus. Felis
-                      arcu pretium metus nullam quam aenean sociis quis sem
-                      neque vici libero. Venenatis nullam fringilla pretium
-                      magnis aliquam nunc vulputate integer augue ultricies
-                      cras. Eget viverra feugiat cras ut. Sit natoque montes
-                      tempus ligula eget vitae pede rhoncus maecenas
-                      consectetuer commodo condimentum aenean.
-                    </p>
-                    <h4>What are my payment options?</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <blockquote>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam.
-                      </p>
-                      <p className="blockquote-footer">
-                        Someone famous in{" "}
-                        <cite title="Source Title">Dick Grayson</cite>
-                      </p>
-                    </blockquote>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
+                    {loadingPosts ? (
+                      <p>Loading...</p>
+                    ) : (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: posts[2].content.rendered,
+                        }}
+                      ></div>
+                    )}
                   </div>
                   {/* End article content */}
                 </article>
@@ -247,7 +232,7 @@ const Blog = () => {
       >
         <div>
           <button className="close-modal" onClick={toggleModalTwo}>
-            <img src="/img/cancel.svg" alt="close icon" />
+            <img src={cancel} alt="close icon" />
           </button>
           {/* End close icon */}
 
@@ -255,72 +240,42 @@ const Blog = () => {
             <div className="scrollable">
               <div className="blog-grid">
                 <div className="blog-img">
-                  <img src="img/blog/blog-2.jpg" alt="blog post"></img>
+                  {loadingMedia ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <img src={media[4].source_url} alt="blog post"></img>
+                  )}
                 </div>
                 {/* End blog-img */}
                 <article className="article">
                   <div className="article-title">
-                    <h2>
-                      Ten Mind-Blowing Reasons Why Design Is Using This
-                      Technique For Exposure.
-                    </h2>
+                    {loadingPosts ? (
+                      <p>Loading...</p>
+                    ) : (
+                      <h2>{posts[1].title.rendered}</h2>
+                    )}
                     <div className="media">
                       <div className="avatar">
                         <img src="img/testimonial/team-2.jpg" alt="thumbnail" />
                       </div>
                       <div className="media-body">
-                        <label>BY SMITH</label>
-                        <span>05 JAN 2020</span>
+                        <label>BY MATTHEW</label>
+                        <span>27 SEP 2023</span>
                       </div>
                     </div>
                   </div>
                   {/* End .article-title */}
 
                   <div className="article-content">
-                    <p>
-                      Aenean eleifend ante maecenas pulvinar montes lorem et
-                      pede dis dolor pretium donec dictum. Vici consequat justo
-                      enim. Venenatis eget adipiscing luctus lorem. Adipiscing
-                      veni amet luctus enim sem libero tellus viverra venenatis
-                      aliquam. Commodo natoque quam pulvinar elit.
-                    </p>
-                    <p>
-                      Eget aenean tellus venenatis. Donec odio tempus. Felis
-                      arcu pretium metus nullam quam aenean sociis quis sem
-                      neque vici libero. Venenatis nullam fringilla pretium
-                      magnis aliquam nunc vulputate integer augue ultricies
-                      cras. Eget viverra feugiat cras ut. Sit natoque montes
-                      tempus ligula eget vitae pede rhoncus maecenas
-                      consectetuer commodo condimentum aenean.
-                    </p>
-                    <h4>What are my payment options?</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <blockquote>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam.
-                      </p>
-                      <p className="blockquote-footer">
-                        Someone famous in{" "}
-                        <cite title="Source Title">Dick Grayson</cite>
-                      </p>
-                    </blockquote>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
+                    {loadingPosts ? (
+                      <p>Loading...</p>
+                    ) : (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: posts[1].content.rendered,
+                        }}
+                      ></div>
+                    )}
                   </div>
                   {/* End article content */}
                 </article>
@@ -350,7 +305,7 @@ const Blog = () => {
       >
         <div>
           <button className="close-modal" onClick={toggleModalThree}>
-            <img src="/img/cancel.svg" alt="close icon" />
+            <img src={cancel} alt="close icon" />
           </button>
           {/* End close icon */}
 
@@ -358,72 +313,42 @@ const Blog = () => {
             <div className="scrollable">
               <div className="blog-grid">
                 <div className="blog-img">
-                  <img src="img/blog/blog-3.jpg" alt="blog post"></img>
+                  {loadingMedia ? (
+                    <p>Loading...</p>
+                  ) : (
+                    <img src={media[3].source_url} alt="blog post"></img>
+                  )}
                 </div>
                 {/* End blog-img */}
                 <article className="article">
                   <div className="article-title">
-                    <h2>
-                      I Will Tell You The Truth About Design In The Next 60
-                      Seconds.
-                    </h2>
+                    {loadingPosts ? (
+                      <p>Loading...</p>
+                    ) : (
+                      <h2>{posts[0].title.rendered}</h2>
+                    )}
                     <div className="media">
                       <div className="avatar">
                         <img src="img/testimonial/team-3.jpg" alt="thumbnail" />
                       </div>
                       <div className="media-body">
-                        <label>BY RIO</label>
-                        <span>12 AUG 2020</span>
+                        <label>BY MATTHEW</label>
+                        <span>26 SEP 2023</span>
                       </div>
                     </div>
                   </div>
                   {/* End .article-title */}
 
                   <div className="article-content">
-                    <p>
-                      Aenean eleifend ante maecenas pulvinar montes lorem et
-                      pede dis dolor pretium donec dictum. Vici consequat justo
-                      enim. Venenatis eget adipiscing luctus lorem. Adipiscing
-                      veni amet luctus enim sem libero tellus viverra venenatis
-                      aliquam. Commodo natoque quam pulvinar elit.
-                    </p>
-                    <p>
-                      Eget aenean tellus venenatis. Donec odio tempus. Felis
-                      arcu pretium metus nullam quam aenean sociis quis sem
-                      neque vici libero. Venenatis nullam fringilla pretium
-                      magnis aliquam nunc vulputate integer augue ultricies
-                      cras. Eget viverra feugiat cras ut. Sit natoque montes
-                      tempus ligula eget vitae pede rhoncus maecenas
-                      consectetuer commodo condimentum aenean.
-                    </p>
-                    <h4>What are my payment options?</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <blockquote>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam.
-                      </p>
-                      <p className="blockquote-footer">
-                        Someone famous in{" "}
-                        <cite title="Source Title">Dick Grayson</cite>
-                      </p>
-                    </blockquote>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                      sint occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </p>
+                    {loadingPosts ? (
+                      <p>Loading...</p>
+                    ) : (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: posts[0].content.rendered,
+                        }}
+                      ></div>
+                    )}
                   </div>
                   {/* End article content */}
                 </article>

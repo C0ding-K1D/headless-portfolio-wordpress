@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PostsContext } from "../../context/posts.context";
+import resume from "../../assets/images/resume.docx";
 
 const About = () => {
+  const { media, loadingMedia } = useContext(PostsContext);
+
   return (
     <>
       <div className="row align-items-center justify-content-center">
@@ -10,7 +14,11 @@ const About = () => {
           data-aos-duration="1200"
         >
           <div className="img-box dark-img-box">
-            <img src="img/about/about-2.jpg" alt="smiling a girl" />
+            {loadingMedia ? (
+              <p>Loading...</p>
+            ) : (
+              <img src={media[2].source_url} alt="developer head shot"></img>
+            )}
           </div>
         </div>
 
@@ -57,11 +65,7 @@ const About = () => {
             </div>
             {/* End .row */}
             <div className="btn-bar">
-              <a
-                className="px-btn px-btn-theme"
-                href="img/resume.docx"
-                download
-              >
+              <a className="px-btn px-btn-theme" href={resume} download>
                 Download CV
               </a>
             </div>
